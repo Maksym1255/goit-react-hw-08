@@ -1,0 +1,53 @@
+.formContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #595858;
+  border-radius: 4px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: start;
+}
+
+.formBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  padding: 8px;
+  border: none;
+  max-width: max-content;
+  height: fit-content;
+  cursor: pointer;
+  border-radius: 4px;
+  background: #cbfafe;
+  color: black;
+  transition: background 250ms ease-in-out, color 250ms ease-in-out;
+}
+
+.formBtn:hover {
+  background: rgb(2, 201, 2);
+  color: white;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.formInput {
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding-left: 8px;
+  transition: border 250ms ease-in-out;
+}
+
+.formInput:hover {
+  border-color: aqua;
+}

@@ -1,0 +1,35 @@
+.contactBtnDelete {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  max-width: 100%;
+  height: fit-content;
+  cursor: pointer;
+  border-radius: 4px;
+  border: none;
+  background: #cbfafe;
+  color: rgb(7, 7, 7);
+  transition: background 250ms ease-in-out, color 250ms ease-in-out;
+}
+
+.contactBtnDelete:hover {
+  background: rgb(255, 1, 1);
+  color: white;
+}
+
+.contactBlock {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+  margin-bottom: 5px;
+  text-align: left;
+}
+
+h3 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}

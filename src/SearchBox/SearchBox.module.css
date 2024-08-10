@@ -1,0 +1,21 @@
+.searchContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: start;
+}
+.searchText {
+  line-height: 2;
+  font-size: 20px;
+}
+
+.searchInput {
+  height: 30px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  padding-left: 8px;
+  transition: border 250ms ease-in-out;
+}
+
+.searchInput:hover {
+  border-color: aqua;
+}
