@@ -4,7 +4,7 @@ import SearchBox from "./components/SearchBox/SearchBox";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { apiGetAllContacts } from "./redux/contactsOps";
+import { fetchContacts } from "./redux/contactsOps";
 import Loader from "./components/Loader/Loader";
 import { selectError, selectIsLoading } from "./redux/selectors";
 
@@ -13,7 +13,7 @@ const App = () => {
   const error = useSelector(selectError);
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(apiGetAllContacts());
+    dispatch(fetchContacts());
   }, [dispatch]);
 
   return (
