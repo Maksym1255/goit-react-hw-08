@@ -2,38 +2,28 @@ import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
 import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { nanoid } from "nanoid";
-import { addContact } from "../../redux/contactsSlice";
+import { apiAddContact } from "../../redux/contactsOps";
 
 const phoneRegExp = /^[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
 
 const ContactValidationSchema = Yup.object().shape({
-  contactName: Yup.string()
-    .min(3, "Too Short!")
+  name: Yup.string()
+    .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  contactNumber: Yup.string()
-    .matches(phoneRegExp, "XXX-XX-XX")
-    .required("Required"),
+  number: Yup.string().matches(phoneRegExp, "XXX-XX-XX").required("Required"),
 });
 
 const INITIAL_VALUES = {
-  contactName: "",
-  contactNumber: "",
+  name: "",
+  number: "",
 };
 
 const ContactForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    const contactObject = {
-      ...values,
-      id: nanoid(),
-    };
-
-    console.log("Adding contact:", contactObject);
-
-    dispatch(addContact(contactObject));
+    dispatch(apiAddContact(values));
     actions.resetForm();
   };
   return (
@@ -48,12 +38,12 @@ const ContactForm = () => {
           <Field
             className={css.formInput}
             type="text"
-            name="contactName"
+            name="name"
             placeholder="Name"
           />
           <ErrorMessage
             className={css.errorMessage}
-            name="contactName"
+            name="name"
             component="span"
           />
         </label>
@@ -62,12 +52,12 @@ const ContactForm = () => {
           <Field
             className={css.formInput}
             type="tel"
-            name="contactNumber"
+            name="number"
             placeholder="XXX-XX-XX"
           />
           <ErrorMessage
             className={css.errorMessage}
-            name="contactNumber"
+            name="number"
             component="span"
           />
         </label>
