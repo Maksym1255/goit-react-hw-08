@@ -5,7 +5,7 @@ import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { apiGetAllContacts } from "./redux/contactsOps";
-import Loader from "./Loader/Loader";
+import Loader from "./components/Loader/Loader";
 import toast from "react-hot-toast";
 import { selectError, selectIsLoading } from "./redux/selectors";
 
