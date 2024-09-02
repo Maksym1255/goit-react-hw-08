@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { apiGetAllContacts } from "./redux/contactsOps";
 import Loader from "./components/Loader/Loader";
-import toast from "react-hot-toast";
 import { selectError, selectIsLoading } from "./redux/selectors";
 
 const App = () => {
@@ -19,13 +18,23 @@ const App = () => {
 
   return (
     <>
-      <h1>Phonebook</h1>
-      {error && toast.error({ error })}
-      <ContactForm />
+      <div>
+        {error !== null ? (
+          <h2>
+            <b>Error...{error}</b>
+          </h2>
+        ) : (
+          <div>
+            <h1>Phonebook</h1>
 
-      <SearchBox />
+            <ContactForm />
 
-      {isLoading ? <Loader /> : <ContactList />}
+            <SearchBox />
+
+            {isLoading ? <Loader /> : <ContactList />}
+          </div>
+        )}
+      </div>
     </>
   );
 };
