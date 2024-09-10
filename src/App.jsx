@@ -1,40 +1,54 @@
-import ContactForm from "./components/ContactForm/ContactForm";
-import ContactList from "./components/ContactList/ContactList";
-import SearchBox from "./components/SearchBox/SearchBox";
 import "./App.css";
 import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import { fetchContacts } from "./redux/contactsOps";
+import { Suspense, useEffect } from "react";
 import Loader from "./components/Loader/Loader";
-import { selectError, selectIsLoading } from "./redux/selectors";
+import { Route, Routes } from "react-router-dom";
+import HomePage from "./Pages/HomePage";
+import RegisterPage from "./Pages/RegisterPage";
+import LoginPage from "./Pages/LoginPage";
+import ContactsPage from "./Pages/ContactsPage";
+import { selectAuthIsRefreshing } from "./redux/auth/selectors";
+import { refreshUser } from "./redux/auth/operations";
+import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
+import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
+import { Layout } from "./components/Layout/Layout";
 
 const App = () => {
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
   const dispatch = useDispatch();
+  const isRefreshing = useSelector(selectAuthIsRefreshing);
+
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
+
+  if (isRefreshing) return <Loader />;
 
   return (
     <>
-      <div>
-        {error !== null ? (
-          <h2>
-            <b>Error...{error}</b>
-          </h2>
-        ) : (
-          <div>
-            <h1>Phonebook</h1>
+      <header>
+        <Layout />
+      </header>
+      <main>
+        <Suspense fallback={<Loader />}>
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route
+              path="/register"
+              element={<RestrictedRoute component={<RegisterPage />} />}
+            />
+            <Route
+              path="/login"
+              element={<RestrictedRoute component={<LoginPage />} />}
+            />
+            <Route
+              path="/contacts"
+              element={<PrivateRoute component={<ContactsPage />} />}
+            />
 
-            <ContactForm />
-
-            <SearchBox />
-
-            {isLoading ? <Loader /> : <ContactList />}
-          </div>
-        )}
-      </div>
+            {/* <Route path="*" element={<NotFoundPage />} /> */}
+          </Routes>
+        </Suspense>
+      </main>
     </>
   );
 };

@@ -1,78 +1,73 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import css from "./ContactForm.module.css";
+import css from "../ContactForm/ContactForm.module.css";
 import { useDispatch } from "react-redux";
-import { addContact } from "../../redux/contacts/operations";
-import toast from "react-hot-toast";
+import { login } from "../../redux/auth/operations";
 
-const phoneRegExp = /^[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
-
-const ContactValidationSchema = Yup.object().shape({
-  name: Yup.string()
-    .min(2, "Too Short!")
-    .max(50, "Too Long!")
-    .required("Required"),
-  number: Yup.string().matches(phoneRegExp, "XXX-XX-XX").required("Required"),
+const LoginValidationSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("Invalid email address")
+    .required("Email address is required"),
+  password: Yup.string()
+    .min(8, "The password must be at least 8 characters long")
+    .max(100, "Password must be less than 100 characters")
+    .required("Password is required"),
 });
 
 const INITIAL_VALUES = {
-  name: "",
-  number: "",
+  email: "",
+  password: "",
 };
 
-const ContactForm = () => {
+const LoginForm = () => {
   const dispatch = useDispatch();
 
   const handleSubmit = (values, actions) => {
-    dispatch(addContact(values))
-      .unwrap()
-      .then(() => {
-        toast.success("Contact added successfully🎉");
-      });
+    dispatch(login(values));
+
     actions.resetForm();
   };
-
   return (
     <Formik
       initialValues={INITIAL_VALUES}
       onSubmit={handleSubmit}
-      validationSchema={ContactValidationSchema}
+      validationSchema={LoginValidationSchema}
     >
       <Form className={css.formContainer}>
         <label className={css.formLabel}>
-          <span>Name</span>
+          <span>Email</span>
           <Field
             className={css.formInput}
-            type="text"
-            name="name"
-            placeholder="Name"
+            type="tel"
+            name="email"
+            placeholder="petro@gmail.com"
           />
           <ErrorMessage
             className={css.errorMessage}
-            name="name"
+            name="email"
             component="span"
           />
         </label>
         <label className={css.formLabel}>
-          <span>Number</span>
+          <span>Password</span>
           <Field
             className={css.formInput}
-            type="tel"
-            name="number"
-            placeholder="XXX-XX-XX"
+            type="password"
+            name="password"
+            placeholder="Enter your password"
           />
           <ErrorMessage
             className={css.errorMessage}
-            name="number"
+            name="password"
             component="span"
           />
         </label>
         <button className={css.formBtn} type="submit">
-          Add contact
+          Sign Up
         </button>
       </Form>
     </Formik>
   );
 };
 
-export default ContactForm;
+export default LoginForm;

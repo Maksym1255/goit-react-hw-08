@@ -1,0 +1,22 @@
+.dutton {
+  width: 60px;
+  text-decoration: none;
+  border: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  background-color: rgb(184, 184, 255);
+  color: blue;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+}
+
+.dutton:hover {
+  color: white;
+  background-color: red;
+}
+
+.userMenu {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
