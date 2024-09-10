@@ -3,15 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { Suspense, useEffect } from "react";
 import Loader from "./components/Loader/Loader";
 import { Route, Routes } from "react-router-dom";
-import HomePage from "./Pages/HomePage";
-import RegisterPage from "./Pages/RegisterPage";
-import LoginPage from "./Pages/LoginPage";
-import ContactsPage from "./Pages/ContactsPage";
+import HomePage from "./pages/HomePage";
+import RegisterPage from "./pages/RegisterPage";
+import LoginPage from "./pages/LoginPage";
 import { selectAuthIsRefreshing } from "./redux/auth/selectors";
 import { refreshUser } from "./redux/auth/operations";
 import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { Layout } from "./components/Layout/Layout";
+import ContactsPage from "./pages/ContactsPage";
 
 const App = () => {
   const dispatch = useDispatch();
