@@ -12,6 +12,7 @@ import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { Layout } from "./components/Layout/Layout";
 import ContactsPage from "./pages/ContactsPage";
+import NotFoundPage from "./pages/NotFoundPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -45,7 +46,7 @@ const App = () => {
               element={<PrivateRoute component={<ContactsPage />} />}
             />
 
-            {/* <Route path="*" element={<NotFoundPage />} /> */}
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Suspense>
       </main>
