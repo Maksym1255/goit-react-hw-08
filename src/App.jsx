@@ -11,8 +11,8 @@ import { refreshUser } from "./redux/auth/operations";
 import { RestrictedRoute } from "./components/RestrictedRoute/RestrictedRoute";
 import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { Layout } from "./components/Layout/Layout";
-import ContactsPage from "./pages/ContactsPage";
 import NotFoundPage from "./pages/NotFoundPage";
+import ContactsPage from "./pages/ContactsPage";
 
 const App = () => {
   const dispatch = useDispatch();
