@@ -43,7 +43,7 @@ const LoginForm = () => {
           <span>Email</span>
           <Field
             className={css.formInput}
-            type="tel"
+            type="email"
             name="email"
             placeholder="petro@gmail.com"
           />
