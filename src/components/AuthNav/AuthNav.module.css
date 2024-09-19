@@ -20,3 +20,15 @@
   display: flex;
   gap: 20px;
 }
+
+.activeLink {
+  display: inline-flex;
+  justify-content: center;
+  width: 60px;
+  text-decoration: none;
+  border-radius: 8px;
+  padding: 5px 10px;
+  color: white;
+  background-color: blue;
+  border: 1px solid blue;
+}

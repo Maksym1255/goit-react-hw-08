@@ -1,0 +1,57 @@
+.modal {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 100%;
+  position: relative;
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.modalContent {
+  text-align: center;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.deleteBtn {
+  background-color: #ccc;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+}
+.deleteBtn:hover {
+  background-color: rgb(255, 1, 1);
+}
+
+.cancelBtn {
+  background-color: #cbfafe;
+  color: black;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 250ms ease-in-out, color 250ms ease-in-out;
+}
+.cancelBtn:hover {
+  color: white;
+  background-color: blue;
+}

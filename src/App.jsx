@@ -13,6 +13,9 @@ import { PrivateRoute } from "./components/PrivateRoute/PrivateRoute";
 import { Layout } from "./components/Layout/Layout";
 import NotFoundPage from "./pages/NotFoundPage";
 import ContactsPage from "./pages/ContactsPage";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 const App = () => {
   const dispatch = useDispatch();

@@ -51,3 +51,6 @@
 .formInput:hover {
   border-color: aqua;
 }
+.formInput:active {
+  border-color: blue;
+}

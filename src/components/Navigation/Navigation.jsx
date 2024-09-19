@@ -7,11 +7,17 @@ export const Navigation = () => {
   const isLoggedin = useSelector(selectAuthIsLoggedIn);
   return (
     <div className={css.navigate}>
-      <NavLink className={css.link} to="/">
+      <NavLink
+        className={({ isActive }) => (isActive ? css.activeLink : css.link)}
+        to="/"
+      >
         Home
       </NavLink>
       {isLoggedin && (
-        <NavLink className={css.link} to="contacts">
+        <NavLink
+          className={({ isActive }) => (isActive ? css.activeLink : css.link)}
+          to="contacts"
+        >
           Contacts
         </NavLink>
       )}

@@ -4,15 +4,18 @@ import css from "./ContactForm.module.css";
 import { useDispatch } from "react-redux";
 import { addContact } from "../../redux/contacts/operations";
 import toast from "react-hot-toast";
+import InputMask from "react-input-mask";
 
-const phoneRegExp = /^[0-9]{3}-[0-9]{2}-[0-9]{2}$/;
+const phoneRegExp = /^[+][0-9]{3} [(][0-9]{2}[)] [0-9]{3} [0-9]{2} [0-9]{2}$/;
 
 const ContactValidationSchema = Yup.object().shape({
   name: Yup.string()
     .min(2, "Too Short!")
     .max(50, "Too Long!")
     .required("Required"),
-  number: Yup.string().matches(phoneRegExp, "XXX-XX-XX").required("Required"),
+  number: Yup.string()
+    .matches(phoneRegExp, "+XXX XX XXX XX XX")
+    .required("Required"),
 });
 
 const INITIAL_VALUES = {
@@ -55,12 +58,19 @@ const ContactForm = () => {
         </label>
         <label className={css.formLabel}>
           <span>Number</span>
-          <Field
-            className={css.formInput}
-            type="tel"
-            name="number"
-            placeholder="XXX-XX-XX"
-          />
+          <Field name="number">
+            {({ field }) => (
+              <InputMask
+                {...field}
+                mask="+999 (99) 999 99 99"
+                maskChar={null}
+                className={css.formInput}
+                type="tel"
+                placeholder="+XXX XX XXX XX XX"
+              />
+            )}
+          </Field>
+
           <ErrorMessage
             className={css.errorMessage}
             name="number"
